@@ -31,8 +31,9 @@
 
 (use-package which-key
   :diminish
+  :disabled
   :config
-  (which-key-mode)
+  (which-key-mode nil)
   (which-key-setup-side-window-bottom)
   (setq which-key-idle-delay 0.1))
 
@@ -103,7 +104,25 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode))
 
+(use-package helm-cscope)
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+(setq gud-pdb-command-name "python -m pdb")
+
+(use-package all-the-icons)
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
 ;; Font settings
-(add-to-list 'default-frame-alist '(font . "Hack-15"))
-(set-face-attribute 'default t :font "Hack-15")
+(add-to-list 'default-frame-alist '(font . "Hack-11"))
+(set-face-attribute 'default t :font "Hack-11")
 (load-theme 'doom-material t)
+
